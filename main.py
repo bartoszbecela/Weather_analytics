@@ -13,13 +13,14 @@ def main():
     url = 'https://danepubliczne.imgw.pl/api/data/synop/'
     response = get(url)
     rows = [
-        ['Id_stacji','Miasto', 'Godzna_pomiaru', 'Temperatura','Cisnienie','Suma_opadu','predkosc_wiatru','kierynek_wiatru','wiglotnosc']   # enter parameters which you want to know(your names)
+        ['Id_stacji','Miasto', 'Data','Godzna_pomiaru', 'Temperatura','Cisnienie','Suma_opadu','predkosc_wiatru','kierynek_wiatru','wiglotnosc']   # enter parameters which you want to know(your names)
     ]
     for row in loads(response.text):
         if row['stacja'] in CITTIES:
           rows.append([                     # In this list enter original names of parameters which are from IMGW site
               row['id_stacji'],
               row['stacja'],
+              row['data_pomiaru'],
               row['godzina_pomiaru'],
               row['temperatura'],
               row['cisnienie'],
